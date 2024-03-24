@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ibfi.tech consulting</title>
+    <style>
+      body {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh; /* 100% of the viewport height */
+          margin: 0; /* Remove default margin */
+      }
+      img#randomImage {
+          max-width: 90%;
+          max-height: 90vh;
+          object-fit: contain;
+      }
+  </style>
+</head>
+<body>
+    <img id="randomImage" src="" alt="ibfi.tech" width="500" height="auto">
+    <script>
+        const imagePath = "images/";
+
+        async function fetchImageList() {
+            const response = await fetch('images/images.json');
+            const imageNames = await response.json();
+
+            const randomIndex = Math.floor(Math.random() * imageNames.length);
+            const imageUrl = imagePath + imageNames[randomIndex];
+            document.getElementById("randomImage").src = imageUrl;
+        }
+
+        window.onload = fetchImageList;
+    </script>
+</body>
+</html>
+
